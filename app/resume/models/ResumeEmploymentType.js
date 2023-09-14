@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../../config/db');
+const sequelize = require('../../../config/db');
 const Resume = require('./Resume');
-const EmploymentType = require('../employment-type/EmploymentType');
+const EmploymentType = require('../../employment-type/EmploymentType');
 
 const ResumeEmploymentType = sequelize.define('ResumeEmploymentType', {
     id: {
@@ -14,7 +14,17 @@ const ResumeEmploymentType = sequelize.define('ResumeEmploymentType', {
     timestamps: false,
 });
 
-Resume.belongsToMany(EmploymentType, { through: ResumeEmploymentType });
-EmploymentType.belongsToMany(Resume, { through: ResumeEmploymentType });
+Resume.belongsToMany(EmploymentType, 
+    { 
+        through: ResumeEmploymentType,
+        foreignKey: 'resumeId',
+        otherKey: 'employmentTypeId',
+    });
+EmploymentType.belongsToMany(Resume, 
+    { 
+        through: ResumeEmploymentType,
+        foreignKey: 'employmentTypeId',
+        otherKey: 'resumeId',
+    });
 
 module.exports = ResumeEmploymentType;
