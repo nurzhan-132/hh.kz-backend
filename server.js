@@ -19,6 +19,8 @@ app.use(require('./app/skills/routes'));
 app.use(require('./app/employment-type/routes'));
 app.use(require('./app/languages/routes'));
 app.use(require('./app/resume/routes'));
+app.use(require('./app/specializations/routes'));
+app.use(require('./app/vacancy/routes'));
 
 app.listen(3000, () => {
     console.log("Server is listening on PORT 3000...");
