@@ -23,15 +23,19 @@ const validateVacancy = (req, res, next) => {
 }
 
 const isAuthorOfVacancy = async(req, res, next) => {
-    const id = req.params.id || req.body.id
-    const vacancy = await Vacancy.findByPk(id);
+    try {
+        const id = req.params.id || req.body.id
+        const vacancy = await Vacancy.findByPk(id);
 
-    if(!vacancy) 
-        res.status(400).send({message: "Vacancy with that id doesn't exist"})
-    else if(vacancy.userId === req.user.id) 
-        next()
-    else 
-        res.status(403).send({ message: "Access Forbidden"})  
+        if(!vacancy) 
+            res.status(400).send({message: "Vacancy with that id doesn't exist"})
+        else if(vacancy.userId === req.user.id) 
+            next()
+        else 
+            res.status(403).send({ message: "Access Forbidden"})  
+    } catch(error) {
+        res.status(500).send(error);
+    }
 }
 
 module.exports = {
