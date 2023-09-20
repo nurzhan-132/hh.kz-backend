@@ -48,3 +48,23 @@ If the installation was successful, you should be able to run the following comm
 If you need to update `npm`, you can make it using `npm`! Cool right? After running the following command, just open again the command line and be happy.
 
     $ npm install npm -g
+
+Install sequelize globally:
+
+    $ npm install -g sequelize-cli
+
+Run migration files: 
+
+    $ sequelize db:migrate
+
+Run all seeders:
+
+    $ sequelize db:seed:all
+
+To launch the server on development environment, run following command: 
+
+    $ NODE_ENV=development node server.js
+
+To launch the server on development environment, run following command: 
+
+    $ NODE_ENV=production node server.js
