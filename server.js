@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(logger('dev'));
-app.use(cors);
+app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
